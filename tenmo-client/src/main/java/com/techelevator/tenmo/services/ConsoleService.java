@@ -1,14 +1,17 @@
 package com.techelevator.tenmo.services;
 
 
+import com.techelevator.tenmo.model.User;
 import com.techelevator.tenmo.model.UserCredentials;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class ConsoleService {
-
+    private String API_BASE_URL = "http://localhost:8080/";
     private final Scanner scanner = new Scanner(System.in);
+    private final AccountService accountService = new AccountService(API_BASE_URL);
+    private User user = new User();
 
     public int promptForMenuSelection(String prompt) {
         int menuSelection;
@@ -44,6 +47,10 @@ public class ConsoleService {
         System.out.println("5: Request TE bucks");
         System.out.println("0: Exit");
         System.out.println();
+    }
+
+    public void printBalance(BigDecimal bigDecimal){
+       System.out.println(bigDecimal);
     }
 
     public UserCredentials promptForCredentials() {

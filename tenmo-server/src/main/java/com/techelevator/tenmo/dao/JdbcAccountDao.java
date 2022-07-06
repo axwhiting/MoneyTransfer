@@ -13,17 +13,18 @@ import java.math.BigDecimal;
 @Component
 public class JdbcAccountDao implements AccountDao{
     private JdbcTemplate jdbcTemplate;
-     public JdbcAccountDao(DataSource dataSource){jdbcTemplate = new JdbcTemplate(dataSource);}
+     public JdbcAccountDao(JdbcTemplate jdbcTemplate){this.jdbcTemplate = jdbcTemplate;}
 
+//    private User user = new User();
    // @Override
-    public Balance getAccountBalance(){
+    public Balance getAccountBalance(Long userId){
         Balance balance = new Balance();
 
          String sql = "SELECT balance " +
                  "FROM account " +
                  "WHERE user_id = ?;";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, 1001);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId );
         if(results.next()){
           balance = mapRowToBalance(results); ;
         }
