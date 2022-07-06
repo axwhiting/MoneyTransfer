@@ -18,10 +18,10 @@ public class AccountController {
         this.userDao = userDao;
     }
 
-    @RequestMapping(path = BASE_API_URL, method = RequestMethod.GET)
+    @RequestMapping(path = "user/balance", method = RequestMethod.GET)
     public Balance getBalance(){
 
-        return this.accountDao.getAccountBalance();
+        return accountDao.getAccountBalance();
     }
 
 }

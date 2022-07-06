@@ -23,7 +23,7 @@ public class JdbcAccountDao implements AccountDao{
                  "FROM account " +
                  "WHERE user_id = ?;";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, 1001);
         if(results.next()){
           balance = mapRowToBalance(results); ;
         }
