@@ -12,20 +12,23 @@ public class AccountService {
     private String API_BASE_URL;
     private final RestTemplate restTemplate = new RestTemplate();
     private String authToken = null;
-    public void setAuthToken (String authToken){
+
+    public void setAuthToken(String authToken) {
         this.authToken = authToken;
     }
-    public AccountService (String url){
+
+    public AccountService(String url) {
         this.API_BASE_URL = url;
 
     }
 
-    public Account getBalance (int userId) {
+    public Account getBalance(int userId) {
         Account account = null;
 //        try {
-            ResponseEntity<Account> response = restTemplate.exchange( API_BASE_URL+ "user/balance", HttpMethod.GET,makeAuthEntity(), Account.class);
+        ResponseEntity<Account> response = restTemplate.exchange(API_BASE_URL + "user/balance", HttpMethod.GET, makeAuthEntity(), Account.class);
 
-            account =response.getBody();
+
+                account = response.getBody();
 //        } catch (RestClientResponseException e) {
 //            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
 //        } catch (ResourceAccessException e) {
@@ -35,17 +38,18 @@ public class AccountService {
     }
 
     private HttpEntity<Account> makeAccountEntity(Account account) {
-    HttpHeaders headers = new HttpHeaders();
-    headers.setContentType(MediaType.APPLICATION_JSON);
-    headers.setBearerAuth(authToken);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(authToken);
 
-    return new HttpEntity<>(account,headers);
+        return new HttpEntity<>(account, headers);
     }
-    private HttpEntity<Void> makeAuthEntity(){
+
+    private HttpEntity<Void> makeAuthEntity() {
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(authToken);
         return new HttpEntity<>(headers);
     }
-
 }
+
 

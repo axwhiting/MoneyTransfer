@@ -49,8 +49,13 @@ public class ConsoleService {
         System.out.println();
     }
 
+<<<<<<< HEAD
     public void printBalance(BigDecimal bigDecimal){
        System.out.println(bigDecimal);
+=======
+    public void printBalance(){
+       // System.out.println(accountService.getBalance());
+>>>>>>> bb6f68e1c4517dd92f4f419a5a22c54d345b4bf3
     }
 
     public UserCredentials promptForCredentials() {

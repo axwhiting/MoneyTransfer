@@ -96,7 +96,11 @@ public class App {
 
 	private void viewCurrentBalance() {
         BigDecimal balance = accountService.getBalance(1001).getBalance();
+<<<<<<< HEAD
         consoleService.printBalance(balance);
+=======
+        consoleService.printBalance();
+>>>>>>> bb6f68e1c4517dd92f4f419a5a22c54d345b4bf3
 
 	}
 
