@@ -15,6 +15,7 @@ public class JdbcAccountDao implements AccountDao{
     private JdbcTemplate jdbcTemplate;
      public JdbcAccountDao(DataSource dataSource){jdbcTemplate = new JdbcTemplate(dataSource);}
 
+    private User user = new User();
    // @Override
     public Balance getAccountBalance(){
         Balance balance = new Balance();
@@ -23,7 +24,7 @@ public class JdbcAccountDao implements AccountDao{
                  "FROM account " +
                  "WHERE user_id = ?;";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, 1001);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, user.getId() );
         if(results.next()){
           balance = mapRowToBalance(results); ;
         }
