@@ -25,7 +25,8 @@ public class AccountService {
     public Account getBalance(int userId) {
         Account account = null;
 //        try {
-        ResponseEntity<Account> response = restTemplate.exchange(API_BASE_URL + "user/balance", HttpMethod.GET, makeAuthEntity(), Account.class);
+        ResponseEntity<Account> response = restTemplate.exchange(API_BASE_URL + "user/" + userId +
+                "/balance", HttpMethod.GET, makeAuthEntity(), Account.class);
 
 
                 account = response.getBody();

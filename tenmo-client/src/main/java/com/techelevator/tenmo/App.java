@@ -95,10 +95,10 @@ public class App {
     }
 
 	private void viewCurrentBalance() {
-        BigDecimal balance = accountService.getBalance(1001).getBalance();
+        BigDecimal balance = accountService.getBalance(Math.toIntExact(currentUser.getUser().getId())).getBalance();
 
 
-       // consoleService.printBalance();
+       consoleService.printBalance(balance);
 
 
 	}
