@@ -5,6 +5,8 @@ import com.techelevator.tenmo.model.User;
 import com.techelevator.tenmo.model.UserCredentials;
 
 import java.math.BigDecimal;
+import java.net.UnknownServiceException;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleService {
@@ -51,10 +53,11 @@ public class ConsoleService {
 
 
     public void printBalance(BigDecimal bigDecimal){
-       System.out.println(bigDecimal);
+       System.out.println("Your current account balance is: " + bigDecimal);
+    }
 
-       // System.out.println(accountService.getBalance());
-
+    public void printUserList(User[] users){
+        System.out.println(users);
     }
 
     public UserCredentials promptForCredentials() {

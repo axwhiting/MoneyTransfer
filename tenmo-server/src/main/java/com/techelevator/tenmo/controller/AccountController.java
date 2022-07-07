@@ -3,10 +3,13 @@ package com.techelevator.tenmo.controller;
 import com.techelevator.tenmo.dao.AccountDao;
 import com.techelevator.tenmo.dao.UserDao;
 import com.techelevator.tenmo.model.Balance;
+import com.techelevator.tenmo.model.User;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class AccountController {
@@ -23,6 +26,11 @@ public class AccountController {
     public Balance getBalance(@PathVariable long id){
 
         return accountDao.getAccountBalance(id);
+    }
+
+    @RequestMapping(path = "usernames", method = RequestMethod.GET)
+    public List<User> users(){
+        return userDao.userNames();
     }
 
 }

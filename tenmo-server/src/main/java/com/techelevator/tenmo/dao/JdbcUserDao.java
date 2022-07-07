@@ -44,6 +44,19 @@ public class JdbcUserDao implements UserDao {
         }
         return users;
     }
+//show list of usernames only!
+
+    public List<User> userNames() {
+        User user = new User();
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT user_id, username FROM tenmo_user WHERE username != '?';";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while(results.next()) {
+            user = mapRowToUserName(results);
+            users.add(user);
+        }
+        return users;
+    }
 
     @Override
     public User findByUsername(String username) throws UsernameNotFoundException {
@@ -86,6 +99,13 @@ public class JdbcUserDao implements UserDao {
         user.setPassword(rs.getString("password_hash"));
         user.setActivated(true);
         user.setAuthorities("USER");
+        return user;
+    }
+
+    private User mapRowToUserName(SqlRowSet rs){
+        User user = new User();
+        user.setUsername(rs.getString("username"));
+
         return user;
     }
 }
