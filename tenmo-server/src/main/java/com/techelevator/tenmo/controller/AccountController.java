@@ -36,9 +36,5 @@ public class AccountController {
         return userDao.userNames();
     }
 
-    @RequestMapping(path ="user/{id}/transfers/{transferid}", method = RequestMethod.GET )
-    public Transfer transfer(@PathVariable int id){
-        return transferDao.getTransferByTransferId(id);
-    }
 
 }

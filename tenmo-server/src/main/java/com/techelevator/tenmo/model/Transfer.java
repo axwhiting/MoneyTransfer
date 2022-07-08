@@ -10,7 +10,9 @@ public class Transfer {
     private int accountTo;
     private BigDecimal amount;
 
-    public Transfer(int transferId, int transferTypeId, int transferStatusId, int accountFrom, int accountTo, BigDecimal amount) {
+    public Transfer(){}
+
+    public Transfer(int transferId, /*int transferTypeId, int transferStatusId,*/ int accountFrom, int accountTo, BigDecimal amount) {
         this.transferId = transferId;
         this.transferTypeId = transferTypeId;
         this.transferStatusId = transferStatusId;

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TransferDao {
 
-    public void createTransfer(Transfer transfer);
+    public Transfer createTransfer(Transfer transfer);
 
     public List<Transfer> transferList();
 
