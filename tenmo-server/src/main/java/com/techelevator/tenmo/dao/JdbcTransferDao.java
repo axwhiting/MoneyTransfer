@@ -14,13 +14,34 @@ public class JdbcTransferDao implements TransferDao {
     private JdbcTemplate jdbcTemplate;
     public JdbcTransferDao(JdbcTemplate jdbcTemplate){this.jdbcTemplate = jdbcTemplate;}
     private BigDecimal amountToTransfer;
+    private TransferDao transferDao;
 
-    public void createTransfer(Transfer transfer){
-        String sql = "INSERT INTO transfer (transfer_id, transfer_type_id, transfer_status_id, account_from, account_to, amount) " +
-                "VALUES (?,?,?,?,?,?);";
+    public Transfer createTransfer(Transfer transfer){
+        String sql = "INSERT INTO transfer( transfer_type_id, transfer_status_id, account_from, account_to, amount) " +
+                "VALUES (?,?,?,?,?);";
 
-        jdbcTemplate.update(sql, transfer.getTransferId(),transfer.getTransferTypeId(),transfer.getTransferStatusId(),
-                transfer.getAccountFrom(), transfer.getAccountTo(), transfer.getAmount());
+        jdbcTemplate.update(sql, transfer.getTransferTypeId(),transfer.getTransferStatusId(),
+                getUserId(transfer.getAccountFrom()), getUserId(transfer.getAccountTo()), transfer.getAmount());
+        return transfer;
+    }
+
+//    public Transfer createTransfer(Transfer transfer){
+//        String sql = "INSERT INTO transfer  " +
+//                "SELECT transfer.transfer_id, transfer.transfer_type_id, transfer.transfer_status_id, transfer.account_from, transfer.account_to, transfer.amount " +
+//                "FROM transfer " +
+//                "LEFT JOIN account ON transfer.account_from = account.user_id;";
+//
+//        jdbcTemplate.update(sql, transfer.getTransferId(), transfer.getTransferTypeId(),transfer.getTransferStatusId(),
+//                transfer.getAccountTo(), transfer.getAccountFrom(), transfer.getAmount());
+//        return transfer;
+//    }
+
+    public int getUserId(int userId){
+        String sql ="SELECT user_id " +
+                "FROM account;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+
+        return userId;
     }
 
     public List<Transfer> transferList(){
@@ -69,7 +90,7 @@ public class JdbcTransferDao implements TransferDao {
         int accountTo = result.getInt("account_to");
         String amountTransfer = result.getString("amount");
 
-        Transfer transfer = new Transfer(transferId, transferTypeId, transferStatusId, accountFrom, accountTo, new BigDecimal(amountTransfer));
+        Transfer transfer = new Transfer(transferId, accountFrom, accountTo, new BigDecimal(amountTransfer));
         return transfer;
     }
 }
