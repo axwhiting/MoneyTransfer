@@ -58,15 +58,22 @@ public class ConsoleService {
 
     public void printUserList(User[] users) {
         User[] userArray = new User[users.length];
+        System.out.println("--------------------");
+        System.out.println("Users");
+        System.out.printf( "ID"+"           " + "NAME");
+        System.out.println();
+        System.out.println("--------------------");
+
+
         for (User user : users) {
+            System.out.println(user.getId() + "          " + user.getUsername());
             //if(user.getUsername() == promptForCredentials().getUsername())
 
-            System.out.println("--------------------");
-            System.out.println("Users");
-            System.out.printf( "ID"+"           " + "NAME");
-            System.out.println();
-            System.out.println("--------------------");
-            System.out.println(user.getId() + "          " + user.getUsername());
+
+
+
+
+
     }
         System.out.println("Enter ID of user you are sending to (0 to cancel): ");
         String userId = scanner.nextLine();
