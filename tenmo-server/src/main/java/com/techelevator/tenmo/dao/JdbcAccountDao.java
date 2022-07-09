@@ -33,6 +33,20 @@ public class JdbcAccountDao implements AccountDao{
         }
          return balance;
     }
+    public void increaseAccountBalance(Long userId,  BigDecimal amount){
+        String sql = "UPDATE account " +
+                "SET balance = balance + ?" +
+                "WHERE user_id = ?;";
+        jdbcTemplate.update(sql, amount, userId );
+    }
+
+    public void decreaseAccountBalance(Long userId,  BigDecimal amount){
+        String sql = "UPDATE account " +
+                "SET balance = balance - ?" +
+                "WHERE user_id = ?;";
+        jdbcTemplate.update(sql, amount, userId );
+    }
+
     private Balance mapRowToBalance(SqlRowSet rs) {
         Balance balance = new Balance();
         balance.setBalance(rs.getBigDecimal("balance"));
