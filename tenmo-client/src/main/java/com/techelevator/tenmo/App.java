@@ -122,7 +122,8 @@ public class App {
 	}
 
 	private void requestBucks() {
-		// TODO Auto-generated method stub
+        User[] users = userService.getUserNames();
+        consoleService.printUserListToRequest(users);
 		
 	}
 
