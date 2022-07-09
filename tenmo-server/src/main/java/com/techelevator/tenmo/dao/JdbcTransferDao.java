@@ -25,16 +25,11 @@ public class JdbcTransferDao implements TransferDao {
         return transfer;
     }
 
-//    public Transfer createTransfer(Transfer transfer){
-//        String sql = "INSERT INTO transfer  " +
-//                "SELECT transfer.transfer_id, transfer.transfer_type_id, transfer.transfer_status_id, transfer.account_from, transfer.account_to, transfer.amount " +
-//                "FROM transfer " +
-//                "LEFT JOIN account ON transfer.account_from = account.user_id;";
-//
-//        jdbcTemplate.update(sql, transfer.getTransferId(), transfer.getTransferTypeId(),transfer.getTransferStatusId(),
-//                transfer.getAccountTo(), transfer.getAccountFrom(), transfer.getAmount());
-//        return transfer;
-//    }
+    @Override
+    public List<Transfer> transferList() {
+        return null;
+    }
+
 
     public int getUserId(int userId){
         String sql ="SELECT user_id " +
@@ -44,7 +39,7 @@ public class JdbcTransferDao implements TransferDao {
         return userId;
     }
 
-    public List<Transfer> transferList(){
+    public List<Transfer> getTransferList(){
         List<Transfer> transferList = new ArrayList<>();
         String sql = "SELECT transfer_id, transfer_type_id, transfer_status_id, account_from, account_to, amount FROM transfer";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);

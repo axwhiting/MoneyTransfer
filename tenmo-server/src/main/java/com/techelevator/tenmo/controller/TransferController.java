@@ -7,6 +7,8 @@ import com.techelevator.tenmo.model.Transfer;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class TransferController {
     private AccountDao accountDao;
@@ -32,6 +34,11 @@ public class TransferController {
     @RequestMapping(path = "user/{userId}/transfers", method = RequestMethod.GET)
     public Transfer getTransferByUserId(@PathVariable int userId) {
         return transferDao.getTransferByTransferId(userId);
+    }
+
+    @RequestMapping(path = "transfers", method = RequestMethod.GET)
+    public List<Transfer> getTransfer(){
+        return transferDao.getTransferList();
     }
 
 }

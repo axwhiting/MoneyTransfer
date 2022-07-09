@@ -1,13 +1,7 @@
 package com.techelevator.tenmo;
 
-import com.techelevator.tenmo.model.AuthenticatedUser;
-import com.techelevator.tenmo.model.Balance;
-import com.techelevator.tenmo.model.User;
-import com.techelevator.tenmo.model.UserCredentials;
-import com.techelevator.tenmo.services.AccountService;
-import com.techelevator.tenmo.services.AuthenticationService;
-import com.techelevator.tenmo.services.ConsoleService;
-import com.techelevator.tenmo.services.UserService;
+import com.techelevator.tenmo.model.*;
+import com.techelevator.tenmo.services.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -22,6 +16,7 @@ public class App {
     private final AccountService accountService = new AccountService(API_BASE_URL);
     private final UserService userService = new UserService(API_BASE_URL);
     private User user = new User();
+    private final TransferService transferService = new TransferService(API_BASE_URL);
 
 
 
@@ -107,7 +102,9 @@ public class App {
 	}
 
 	private void viewTransferHistory() {
-		// TODO Auto-generated method stub
+
+        Transfer[] transfer = transferService.getTransfersArray();
+		consoleService.printTransferHistory(transfer);
 		
 	}
 

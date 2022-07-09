@@ -8,7 +8,6 @@ public class Balance {
         public BigDecimal getBalance() {
             return balance;
         }
-
         public void setBalance(BigDecimal balance) {
             this.balance = balance;
         }
