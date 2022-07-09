@@ -70,10 +70,6 @@ public class ConsoleService {
             //if(user.getUsername() == promptForCredentials().getUsername())
 
 
-
-
-
-
     }
         System.out.println("Enter ID of user you are sending to (0 to cancel): ");
         String userId = scanner.nextLine();
