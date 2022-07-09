@@ -14,5 +14,7 @@ public interface TransferDao {
 
     public Transfer getTransferByTransferId(int transferId);
 
+    public List<Transfer> getTransferList();
+
 
 }

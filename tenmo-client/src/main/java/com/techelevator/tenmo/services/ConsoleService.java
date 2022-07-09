@@ -1,6 +1,7 @@
 package com.techelevator.tenmo.services;
 
 
+import com.techelevator.tenmo.model.Transfer;
 import com.techelevator.tenmo.model.User;
 import com.techelevator.tenmo.model.UserCredentials;
 
@@ -67,14 +68,10 @@ public class ConsoleService {
 
         for (User user : users) {
             System.out.println(user.getId() + "          " + user.getUsername());
-            //if(user.getUsername() == promptForCredentials().getUsername())
-
-
-
-
-
 
     }
+
+
         System.out.println("Enter ID of user you are sending to (0 to cancel): ");
         String userId = scanner.nextLine();
         System.out.println("Enter amount:");
@@ -127,6 +124,13 @@ public class ConsoleService {
 
     public void printErrorMessage() {
         System.out.println("An error occurred. Check the log for details.");
+    }
+
+    public void printTransferHistory(Transfer[] transfers){
+        Transfer[] transferArray = new Transfer[transfers.length];
+        for(Transfer transfer: transfers){
+            System.out.println(transfer.getAccount_from() + transfer.getAccount_to() + transfer.getTransfer_id() + transfer.getTransfer_status_id() + transfer.getTransfer_type_id());
+        }
     }
 
 }

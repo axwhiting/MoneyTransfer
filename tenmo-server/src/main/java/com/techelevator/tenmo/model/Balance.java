@@ -1,5 +1,6 @@
 package com.techelevator.tenmo.model;
 
+import javax.naming.InsufficientResourcesException;
 import java.math.BigDecimal;
 
 public class Balance {
@@ -12,4 +13,15 @@ public class Balance {
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
+
+    public void sendMoney(BigDecimal amount) {
+        BigDecimal newBalance = new BigDecimal(String.valueOf(balance)).subtract(amount);
+        if(newBalance.compareTo(BigDecimal.ZERO)>=0){
+            this.balance = newBalance;
+        }
+    }
+    public void receiveMoney(BigDecimal amount){
+            this.balance = new BigDecimal(String.valueOf(balance)).add(amount);
+        }
+
 }

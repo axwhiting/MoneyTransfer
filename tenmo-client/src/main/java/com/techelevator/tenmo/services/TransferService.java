@@ -20,13 +20,21 @@ public class TransferService {
         this.API_BASE_URL = url;
     }
 
-    public Transfer getTransferByTransferId(int transferId){
-        Transfer transfer = restTemplate.exchange(API_BASE_URL + "/transfers/" + transferId, HttpMethod.GET,makeAuthEntity(),Transfer.class).getBody();
+    public Transfer [] getTransfersArray(){
+        Transfer[] transfers = restTemplate.exchange(API_BASE_URL + "transfers", HttpMethod.GET, makeAuthEntity(), Transfer[].class).getBody();
+        return transfers;
+    }
+
+    public Transfer getTransferByTransferId(int transferId) {
+        Transfer transfer = restTemplate.exchange(API_BASE_URL + "transfers/" + transferId, HttpMethod.GET, makeAuthEntity(), Transfer.class).getBody();
 
         return transfer;
     }
 
-
+    public Transfer getTransferByUserId(int userId){
+        Transfer transfer = restTemplate.exchange(API_BASE_URL + "user/" + userId + "transfers", HttpMethod.GET, makeAuthEntity(), Transfer.class).getBody();
+        return transfer;
+    }
 
     private HttpEntity<Transfer> makeTransferEntity(Transfer transfer) {
         HttpHeaders headers = new HttpHeaders();
@@ -40,4 +48,6 @@ public class TransferService {
         headers.setBearerAuth(authToken);
         return new HttpEntity<>(headers);
     }
+
+
 }
