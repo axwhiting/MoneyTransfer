@@ -59,7 +59,7 @@ public class ConsoleService {
         User[] userArray = new User[users.length];
         System.out.println("--------------------");
         System.out.println("Users");
-        System.out.printf( "ID"+"           " + "NAME");
+        System.out.printf("ID" + "           " + "NAME");
         System.out.println();
         System.out.println("--------------------");
 
@@ -69,15 +69,17 @@ public class ConsoleService {
             //if(user.getUsername() == promptForCredentials().getUsername())
 
 
-    }
+        }
         System.out.println("Enter ID of user you are sending to (0 to cancel): ");
-        String userId = scanner.nextLine();
-        System.out.println("Enter amount:");
-        String userAmount = scanner.nextLine();
+        int userId = scanner.nextInt();
+        if (userId != 0) {
+            System.out.println("Enter amount:");
+            String userAmount = scanner.nextLine();
 
-        Double newAmount = Double.parseDouble(userAmount);
-        if(newAmount <= 0){
-            System.out.println("Please enter a positive number");
+            Double newAmount = Double.parseDouble(userAmount);
+            if (newAmount <= 0) {
+                System.out.println("Please enter a positive number");
+            }
         }
     }
 
@@ -97,16 +99,20 @@ public class ConsoleService {
 
 
         System.out.println("Enter ID of user you are requesting from. (0 to cancel): ");
-        String userId = scanner.nextLine();
-        System.out.println("Enter amount:");
-        String userAmount = scanner.nextLine();
+        int userId = scanner.nextInt();
+        if(userId != 0) {
 
-        Double newAmount = Double.parseDouble(userAmount);
-        if(newAmount <= 0){
-            System.out.println("Please enter a positive number");
+            System.out.println("Enter amount:");
+            String userAmount = scanner.nextLine();
+
+            Double newAmount = Double.parseDouble(userAmount);
+            if (newAmount <= 0) {
+                System.out.println("Please enter a positive number");
+            }
+        }
         }
 
-    }
+
     public UserCredentials promptForCredentials() {
         String username = promptForString("Username: ");
         String password = promptForString("Password: ");

@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,11 +46,11 @@ public class JdbcUserDao implements UserDao {
         return users;
     }
 //show list of usernames only!
-
+@Override
     public List<User> userNames() {
         User user = new User();
         List<User> users = new ArrayList<>();
-        String sql = "SELECT user_id, username FROM tenmo_user WHERE username != '?';";
+        String sql = "SELECT user_id, username FROM tenmo_user ;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while(results.next()) {
             user = mapRowToUserName(results);

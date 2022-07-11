@@ -22,7 +22,8 @@ public class TransferController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "transfers", method = RequestMethod.POST)
-        public Transfer newTransfer(@RequestBody Transfer transfer ){
+        public Transfer newTransfer(@RequestBody Transfer transfer ) {
+//        accountDao.increaseAccountBalance(transfer.getAccountTo());
         return transferDao.createTransfer(transfer);
     }
 

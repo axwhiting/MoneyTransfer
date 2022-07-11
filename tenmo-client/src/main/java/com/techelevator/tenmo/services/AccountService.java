@@ -28,7 +28,6 @@ public class AccountService {
         ResponseEntity<Account> response = restTemplate.exchange(API_BASE_URL + "user/" + userId +
                 "/balance", HttpMethod.GET, makeAuthEntity(), Account.class);
 
-
                 account = response.getBody();
 //        } catch (RestClientResponseException e) {
 //            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());

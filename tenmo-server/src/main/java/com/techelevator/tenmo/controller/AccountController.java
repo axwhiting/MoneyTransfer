@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -40,12 +41,13 @@ public class AccountController {
     @RequestMapping(path = "user/{id}/balance", method = RequestMethod.PUT)
     public void increaseBalance(@PathVariable long id, BigDecimal amount){
         accountDao.increaseAccountBalance(id, amount);
-    }
-
-    @RequestMapping(path = "user/{id}/balance", method = RequestMethod.PUT)
-    public void decreaseBalance(@PathVariable long id, BigDecimal amount){
         accountDao.decreaseAccountBalance(id, amount);
     }
 
+//    @RequestMapping(path = "user/{id}/balance", method = RequestMethod.PUT)
+//    public void decreaseBalance(@PathVariable long id, BigDecimal amount){
+//
+//    }
+//
 
 }

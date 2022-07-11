@@ -117,11 +117,13 @@ public class App {
         //print list of usernames
        User[] users = userService.getUserNames();
        consoleService.printUserList(users);
-		// TODO Auto-generated method stub
+
+
 		
 	}
 
 	private void requestBucks() {
+
         User[] users = userService.getUserNames();
         consoleService.printUserListToRequest(users);
 		
